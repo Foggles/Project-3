@@ -6,6 +6,9 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+
 export default function LoginPage() {
   const [error, setError] = useState("");
   const emailRef = useRef();
@@ -33,7 +36,7 @@ export default function LoginPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/";
+        window.location = "/characters";
       })
       .catch((error) => {
         setError(error);
@@ -42,6 +45,27 @@ export default function LoginPage() {
 
   return (
     <Container>
+      <Row>
+        <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
+          <Navbar.Brand href="/">Varanus</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav>
+              <Nav.Item>
+                <Nav.Link href="/">HomePage</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/signup">Signup</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+      </Row>
+      <br />
+      <br />
       <Row>
         <Col>
           <h1>Login</h1>

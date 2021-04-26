@@ -5,6 +5,8 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
+import CharacterPage from "./pages/CharacterPage";
+import PlayPage from "./pages/PlayPage";
 
 function App() {
   return (
@@ -16,11 +18,14 @@ function App() {
         <Route exact path="/signup">
           <SignupPage />
         </Route>
-        <ProtectedRoute exact path="/">
+        <Route exact path="/">
           <HomePage />
+        </Route>
+        <ProtectedRoute exact path="/characters">
+          <CharacterPage />
         </ProtectedRoute>
-        <ProtectedRoute exact path="/luca">
-          <div>Luca</div>
+        <ProtectedRoute exact path="/play">
+          <PlayPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
