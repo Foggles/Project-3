@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,6 +9,28 @@ import Nav from "react-bootstrap/Nav";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/user_data", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((resp) => {
+        if (resp.status !== 200) {
+          throw resp.statusText;
+        }
+        return resp.json();
+      })
+      .then((respUser) => {
+        setLoggedIn(respUser.email != null);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, []);
+
 
   function handleLogout() {
     fetch("/api/logout", {
@@ -38,9 +60,15 @@ export default function LoginPage() {
               <Nav.Item>
                 <Nav.Link href="/">HomePage</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+              {!isLoggedIn ?<><Nav.Item>
+                <Nav.Link href="/signup">Signup</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </Nav.Item></> :
+                <Nav.Item>
+                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                </Nav.Item>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
