@@ -13,11 +13,14 @@ export default function SignupPage() {
   const [error, setError] = useState("");
   const emailRef = useRef();
   const passwordRef = useRef();
+  const nameRef = useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
 
+    debugger;
     const newUser = {
+      username: nameRef.current.value,
       email: emailRef.current.value,
       password: passwordRef.current.value,
     };
@@ -36,7 +39,7 @@ export default function SignupPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/";
+        window.location = "/characters";
       })
       .catch((error) => {
         setError(error);
@@ -74,6 +77,15 @@ export default function SignupPage() {
       <Row>
         <Col>
           <Form>
+            <Form.Group controlId="formBasicUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                ref={nameRef}
+                type="string"
+                placeholder="Enter Username"
+              />
+            </Form.Group>
+
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control

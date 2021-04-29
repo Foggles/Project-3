@@ -60,15 +60,18 @@ export default function LoginPage() {
               <Nav.Item>
                 <Nav.Link href="/">HomePage</Nav.Link>
               </Nav.Item>
-              {!isLoggedIn ?<><Nav.Item>
+              {!isLoggedIn ? <><Nav.Item>
                 <Nav.Link href="/signup">Signup</Nav.Link>
               </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/login">Login</Nav.Link>
-              </Nav.Item></> :
                 <Nav.Item>
-                  <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-                </Nav.Item>}
+                  <Nav.Link href="/login">Login</Nav.Link>
+                </Nav.Item></> :
+                <><Nav.Item>
+                  <Nav.Link href="/characters">Characters</Nav.Link>
+                </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                  </Nav.Item></>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

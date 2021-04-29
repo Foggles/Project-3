@@ -9,6 +9,7 @@ module.exports = function (app) {
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
+      username: req.user.username,
       email: req.user.email,
       id: req.user.id,
     });
@@ -19,6 +20,7 @@ module.exports = function (app) {
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
     db.User.create({
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     })
@@ -46,9 +48,21 @@ module.exports = function (app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
+        username: req.user.username,
         email: req.user.email,
         id: req.user.id,
       });
     }
   });
+
+  app.post("/api/characters", (req, res) => {
+    db.Character.create({
+      seed: req.body.seed,
+      faction: req.body.faction,
+      level: 1,
+      health: req.body.health,
+      mana: req.body.mana
+    })
+  });
+
 };

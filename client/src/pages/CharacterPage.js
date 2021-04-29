@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -27,6 +28,10 @@ export default function CharacterPage() {
             });
     }
 
+    function handleCreateChar() {
+        
+    }
+
     return (
         <Container>
             <Row>
@@ -48,8 +53,39 @@ export default function CharacterPage() {
             <br />
             <br />
             <Row>
+                <Col></Col>
                 <Col>
                     <h1>Characters Page</h1>
+                </Col>
+                <Col></Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Table striped bordered hover variant="dark">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th><Button>Create New Character</Button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </Table>
                 </Col>
             </Row>
         </Container>
