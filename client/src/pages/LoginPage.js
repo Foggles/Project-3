@@ -52,9 +52,6 @@ export default function LoginPage() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
               <Nav.Item>
-                <Nav.Link href="/">HomePage</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
                 <Nav.Link href="/signup">Signup</Nav.Link>
               </Nav.Item>
               <Nav.Item>

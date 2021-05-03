@@ -13,5 +13,9 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    Enemy.associate = (db) => {
+        Enemy.hasMany(db.Ability, { as: "Abilities" });
+    }
+
     return Enemy;
 };

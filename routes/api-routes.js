@@ -63,6 +63,19 @@ module.exports = function (app) {
       health: req.body.health,
       mana: req.body.mana
     })
+      .then(() => {
+        res.json({
+          seed: res.seed,
+          faction: res.faction,
+          level: res.level,
+          health: res.health,
+          mana: res.mana,
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(401).json(err);
+      });
   });
 
 };

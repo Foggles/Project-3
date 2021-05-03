@@ -1,11 +1,19 @@
 module.exports = function (sequelize, DataTypes) {
-    const Classes = sequelize.define("Classes", {
+    const Class = sequelize.define("Class", {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
-        }
+        },
     });
 
-    return Classes;
+    Class.associate = (db) => {
+        Class.belongsTo(db.Character);
+    }
+
+    Class.associate = (db) => {
+        Class.hasMany(db.Ability);
+    }
+
+    return Class;
 };

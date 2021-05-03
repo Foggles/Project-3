@@ -21,5 +21,13 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
+    // Ability.associate = (db) => {
+    //     Ability.belongsTo(db.Class);
+    // };
+
+    // Ability.associate = (db) => {
+    //     Ability.belongsTo(db.Enemy);
+    // };
+
     return Ability;
 };

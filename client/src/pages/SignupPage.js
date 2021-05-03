@@ -17,8 +17,7 @@ export default function SignupPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    debugger;
+    
     const newUser = {
       username: nameRef.current.value,
       email: emailRef.current.value,
@@ -54,9 +53,6 @@ export default function SignupPage() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Item>
-                <Nav.Link href="/">HomePage</Nav.Link>
-              </Nav.Item>
               <Nav.Item>
                 <Nav.Link href="/signup">Signup</Nav.Link>
               </Nav.Item>

@@ -57,9 +57,6 @@ export default function LoginPage() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
-              <Nav.Item>
-                <Nav.Link href="/">HomePage</Nav.Link>
-              </Nav.Item>
               {!isLoggedIn ? <><Nav.Item>
                 <Nav.Link href="/signup">Signup</Nav.Link>
               </Nav.Item>
