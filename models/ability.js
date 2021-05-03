@@ -18,11 +18,8 @@ module.exports = function (sequelize, DataTypes) {
 
     Ability.associate = (db) => {
         Ability.belongsTo(db.Class);
+        Ability.belongsTo(db.Enemy);
     };
-
-    // Ability.associate = (db) => {
-    //     Ability.belongsTo(db.Enemy);
-    // };
 
     return Ability;
 };

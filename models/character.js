@@ -26,10 +26,12 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
-    
+
     Character.associate = (db) => {
+        Character.belongsTo(db.Class);
         Character.belongsTo(db.User);
     };
+
 
     return Character;
 };
