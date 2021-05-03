@@ -13,17 +13,12 @@ module.exports = function (sequelize, DataTypes) {
         effect: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-
-        forClass: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
     });
 
-    // Ability.associate = (db) => {
-    //     Ability.belongsTo(db.Class);
-    // };
+    Ability.associate = (db) => {
+        Ability.belongsTo(db.Class);
+    };
 
     // Ability.associate = (db) => {
     //     Ability.belongsTo(db.Enemy);

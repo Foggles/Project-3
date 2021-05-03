@@ -33,8 +33,6 @@ function MyVerticallyCenteredModal(props) {
 
         console.log(newCharacter);
 
-        debugger;
-
         fetch("/api/characters", {
             method: "POST",
             body: JSON.stringify(newCharacter),
@@ -48,8 +46,9 @@ function MyVerticallyCenteredModal(props) {
                 }
                 return resp.json();
             })
-            .then(() => {
-                window.location = "/characters";
+            .then((data) => {
+                console.log(data);
+                props.onHide();
             })
             .catch((error) => {
                 setError(error);
@@ -122,6 +121,7 @@ function MyVerticallyCenteredModal(props) {
 export default function CharacterPage() {
     const [error, setError] = useState("");
     const [modalShow, setModalShow] = React.useState(false);
+    const [data, setData] = useState();
 
     function handleLogout() {
         fetch("/api/logout", {

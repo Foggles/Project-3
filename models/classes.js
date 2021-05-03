@@ -8,12 +8,13 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Class.associate = (db) => {
-        Class.belongsTo(db.Character);
+        Class.hasMany(db.Ability);
     }
 
     Class.associate = (db) => {
-        Class.hasMany(db.Ability);
+        Class.belongsTo(db.Character);
     }
+
 
     return Class;
 };

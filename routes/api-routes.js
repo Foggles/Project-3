@@ -63,13 +63,13 @@ module.exports = function (app) {
       health: req.body.health,
       mana: req.body.mana
     })
-      .then(() => {
+      .then((result) => {
         res.json({
-          seed: res.seed,
-          faction: res.faction,
-          level: res.level,
-          health: res.health,
-          mana: res.mana,
+          seed: result.seed,
+          faction: result.faction,
+          level: result.level,
+          health: result.health,
+          mana: result.mana,
         })
       })
       .catch((err) => {
