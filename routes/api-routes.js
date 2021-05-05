@@ -61,21 +61,48 @@ module.exports = function (app) {
       faction: req.body.faction,
       level: 1,
       health: req.body.health,
-      mana: req.body.mana
+      mana: req.body.mana,
+      ClassId: req.body.ClassId,
+      UserId: req.body.UserId
     })
       .then((result) => {
-        res.json({
-          seed: result.seed,
-          faction: result.faction,
-          level: result.level,
-          health: result.health,
-          mana: result.mana,
+
+        return db.Character.findOne({
+          where: {
+            id: result.id
+          },
+          include: db.Class
         })
+        // res.json({
+        //   seed: result.seed,
+        //   faction: result.faction,
+        //   level: result.level,
+        //   health: result.health,
+        //   mana: result.mana,
+        //   ClassId: req.body.ClassId,
+        //   UserId: req.body.UserId
+        // })
+      })
+      .then((response) => {
+        res.json(response)
       })
       .catch((err) => {
         console.log(err);
         res.status(401).json(err);
       });
   });
+
+  app.get("/api/characters", (req, res) => {
+    db.Character.findAll({
+      include: db.Class
+      // include: [{
+      //   model: db.Class,
+      //   as: 'ClassId'
+      // }]
+    })
+      .then((result) => {
+        res.json(result);
+      })
+  })
 
 };

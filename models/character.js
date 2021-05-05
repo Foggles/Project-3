@@ -24,6 +24,16 @@ module.exports = function (sequelize, DataTypes) {
         mana: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+
+        ClassId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
+        UserId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,6 +11,26 @@ import Nav from "react-bootstrap/Nav";
 
 export default function PlayPage() {
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        fetch("/api/characters", {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((resp) => {
+                if (resp.status !== 200) {
+                    throw resp.statusText;
+                }
+                return resp.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                setError(error);
+            });
+    }, [])
 
     function handleLogout() {
         fetch("/api/logout", {

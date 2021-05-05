@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Class.associate = (db) => {
-        Class.hasMany(db.Character);
+        Class.hasMany(db.Character, { as: 'ClassId' });
         Class.hasMany(db.Ability);
     };
 
