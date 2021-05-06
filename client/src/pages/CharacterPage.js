@@ -4,6 +4,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 import CharacterTable from "../components/CharacterTable";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -34,17 +37,18 @@ export default function CharacterPage() {
         <Container>
             <Row>
                 <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
-                    <Navbar.Brand href="/">Varanus</Navbar.Brand>
+                    <Navbar.Brand href="/"><h4>Varanus</h4></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>
                             <Nav.Item>
-                                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                                <Nav.Link onClick={handleLogout}><FontAwesomeIcon icon={faSignOutAlt} color={"white"} size={"2x"} /></Nav.Link>
                             </Nav.Item>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
             </Row>
+            <br />
             <br />
             <br />
             <Row>

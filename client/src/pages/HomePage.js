@@ -3,9 +3,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function LoginPage() {
   const [error, setError] = useState("");
@@ -67,12 +69,13 @@ export default function LoginPage() {
                   <Nav.Link href="/characters">Characters</Nav.Link>
                 </Nav.Item>
                   <Nav.Item>
-                    <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                    <Nav.Link onClick={handleLogout}><FontAwesomeIcon icon={faSignOutAlt} color={"white"} size={"2x"} /></Nav.Link>
                   </Nav.Item></>}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       </Row>
+      <br />
       <br />
       <br />
       <Row>
