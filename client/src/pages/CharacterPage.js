@@ -36,7 +36,7 @@ export default function CharacterPage() {
                 <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
                     <Navbar.Brand href="/">Varanus</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>
                             <Nav.Item>
                                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>

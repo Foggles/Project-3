@@ -73,15 +73,6 @@ module.exports = function (app) {
           },
           include: db.Class
         })
-        // res.json({
-        //   seed: result.seed,
-        //   faction: result.faction,
-        //   level: result.level,
-        //   health: result.health,
-        //   mana: result.mana,
-        //   ClassId: req.body.ClassId,
-        //   UserId: req.body.UserId
-        // })
       })
       .then((response) => {
         res.json(response)
@@ -92,17 +83,26 @@ module.exports = function (app) {
       });
   });
 
-  app.get("/api/characters", (req, res) => {
+  app.get("/api/user-characters", (req, res) => {
     db.Character.findAll({
-      include: db.Class
-      // include: [{
-      //   model: db.Class,
-      //   as: 'ClassId'
-      // }]
+      include: db.Class,
+      where: { userId: req.user.id }
     })
       .then((result) => {
         res.json(result);
       })
+  })
+
+  app.get("/api/characters/:id", (req, res) => {
+    db.Character.findAll({
+      where: { id: req.params.id },
+      include: db.Class
+    })
+      // db.Character.findOne({ where: { id: req.params.id } })
+      // db.Character.findByPk(req.params.id)
+      .then((data) => {
+        res.json(data);
+      });
   })
 
 };

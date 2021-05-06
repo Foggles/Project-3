@@ -1,19 +1,21 @@
 import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
+import Playscreen from "../components/Playscreen";
+
 export default function PlayPage() {
     const [error, setError] = useState("");
+    const [characterData, setCharacterData] = useState([]);
+
+    let { id } = useParams();
 
     useEffect(() => {
-        fetch("/api/characters", {
+        fetch("/api/characters/" + id, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -26,11 +28,12 @@ export default function PlayPage() {
             })
             .then((data) => {
                 console.log(data);
+                setCharacterData(data);
             })
             .catch((error) => {
                 setError(error);
             });
-    }, [])
+    }, [id])
 
     function handleLogout() {
         fetch("/api/logout", {
@@ -55,8 +58,11 @@ export default function PlayPage() {
                 <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
                     <Navbar.Brand href="/">Varanus</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
+                    <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>
+                            <Nav.Item>
+                                <Nav.Link href="/characters">Back to Characters</Nav.Link>
+                            </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
                             </Nav.Item>
@@ -67,10 +73,14 @@ export default function PlayPage() {
             <br />
             <br />
             <Row>
+                <Col></Col>
                 <Col>
                     <h1>Play Page</h1>
                 </Col>
+                <Col></Col>
             </Row>
+            {characterData && <Playscreen propsCharacterData={characterData} />}
+
         </Container>
     );
 }

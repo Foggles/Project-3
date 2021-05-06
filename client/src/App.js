@@ -24,7 +24,7 @@ function App() {
         <ProtectedRoute exact path="/characters">
           <CharacterPage />
         </ProtectedRoute>
-        <ProtectedRoute exact path="/play">
+        <ProtectedRoute exact path="/play/:id">
           <PlayPage />
         </ProtectedRoute>
       </Switch>

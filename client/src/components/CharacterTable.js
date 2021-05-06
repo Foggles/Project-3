@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import * as FCG from "fantasy-content-generator";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import { Link } from "react-router-dom";
 
 import CreateCharacterModal from "../components/Modal";
 
@@ -15,7 +15,7 @@ export default function CharacterTable() {
     const [modalShow, setModalShow] = React.useState(false);
 
     useEffect(() => {
-        fetch("/api/characters", {
+        fetch("/api/user-characters", {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -53,6 +53,7 @@ export default function CharacterTable() {
                                 <th>Class</th>
                                 <th>Level</th>
                                 <th>Faction</th>
+                                <th>Play</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +66,7 @@ export default function CharacterTable() {
                                     <td>{data.Class.name}</td>
                                     <td>{data.level}</td>
                                     <td>{data.faction}</td>
-                                    <td><Button href="/play" block>Play!</Button></td>
+                                    <td><Button block><Link to={"/play/" + data.id}>Play!</Link></Button></td>
                                 </tr>;
                             })}
                         </tbody>
