@@ -94,7 +94,7 @@ module.exports = function (app) {
   })
 
   app.get("/api/characters/:id", (req, res) => {
-    db.Character.findAll({
+    db.Character.findOne({
       where: { id: req.params.id },
       include: db.Class
     })

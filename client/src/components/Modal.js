@@ -59,39 +59,6 @@ export default function MyVerticallyCenteredModal(props) {
                         setError(error);
                     });
             });
-
-
-        // const newCharacter = {
-        //     seed: generatedCharacter.seed,
-        //     faction: charFactionRef.current.value,
-        //     level: 1,
-        //     health: 100,
-        //     mana: 100,
-        //     ClassId: charClassRef.current.value
-        // };
-
-        // console.log(newCharacter);
-
-        // fetch("/api/characters", {
-        //     method: "POST",
-        //     body: JSON.stringify(newCharacter),
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // })
-        //     .then((resp) => {
-        //         if (resp.status !== 200) {
-        //             throw resp.statusText;
-        //         }
-        //         return resp.json();
-        //     })
-        //     .then((data) => {
-        //         console.log(data);
-        //         props.onClose(data);
-        //     })
-        //     .catch((error) => {
-        //         setError(error);
-        //     });
     }
 
     return (

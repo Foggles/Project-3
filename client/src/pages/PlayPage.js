@@ -13,7 +13,7 @@ import Playscreen from "../components/Playscreen";
 
 export default function PlayPage() {
     const [error, setError] = useState("");
-    const [characterData, setCharacterData] = useState([]);
+    const [characterData, setCharacterData] = useState(null);
 
     let { id } = useParams();
 
@@ -54,7 +54,7 @@ export default function PlayPage() {
                 setError(error);
             });
     }
-
+    console.log(characterData);
     return (
         <Container>
             <Row>
@@ -75,13 +75,8 @@ export default function PlayPage() {
             </Row>
             <br />
             <br />
-            <Row>
-                <Col></Col>
-                <Col>
-                    <h1>Play Page</h1>
-                </Col>
-                <Col></Col>
-            </Row>
+            <br />
+
             {characterData && <Playscreen propsCharacterData={characterData} />}
 
         </Container>

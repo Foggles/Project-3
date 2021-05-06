@@ -54,6 +54,7 @@ export default function CharacterTable() {
                                 <th>Character Name</th>
                                 <th>Class</th>
                                 <th>Level</th>
+                                <th>Race</th>
                                 <th>Faction</th>
                                 <th>Play</th>
                             </tr>
@@ -62,11 +63,20 @@ export default function CharacterTable() {
                             {tableData.map((data, index) => {
                                 console.log(data.seed);
                                 const character = FCG.Names.generate({ seed: data.seed });
+                                const characterRace = character.race;
+
                                 console.log(data);
+                                console.log(character);
+
+                                function capitalizeFirstLetter(string) {
+                                    return string.charAt(0).toUpperCase() + string.slice(1);
+                                };
+
                                 return <tr key={data.seed}>
                                     <td>{character.name}</td>
                                     <td>{data.Class.name}</td>
                                     <td>{data.level}</td>
+                                    <td>{capitalizeFirstLetter(characterRace)}</td>
                                     <td>{data.faction}</td>
                                     <td><Button block><Link to={"/play/" + data.id}><FontAwesomeIcon icon={faAngleDoubleRight} color={"white"} /></Link></Button></td>
                                 </tr>;
