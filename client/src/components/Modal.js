@@ -6,14 +6,18 @@ import Form from "react-bootstrap/Form";
 
 export default function MyVerticallyCenteredModal(props) {
     const [error, setError] = useState("");
-    const charRaceRef = useRef();
+    const charRaceRef = useRef(null);
     const charGenderRef = useRef();
     const charFactionRef = useRef();
     const charClassRef = useRef();
 
     function handleCreateChar() {
-        const generatedCharacter = FCG.Names.generate({ race: charRaceRef.current.value, gender: charGenderRef.current.value });
+        // ! There's an error in the API. The character after being regenerated is different.
+        console.log("Selected Race = " + charRaceRef.current.value);
+        const generatedCharacter = FCG.Names.generate({ race: charRaceRef.current.value });
         console.log(generatedCharacter);
+        const testChar = FCG.Names.generate({ seed: generatedCharacter.seed });
+        console.log(testChar);
 
         fetch("/api/user_data", {
             method: "GET"

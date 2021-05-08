@@ -10,6 +10,11 @@ module.exports = function (sequelize, DataTypes) {
         type: {
             type: DataTypes.STRING,
             allowNull: true,
+        },
+
+        health: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     });
 
