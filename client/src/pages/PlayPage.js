@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -13,31 +12,6 @@ import Playscreen from "../components/Playscreen";
 
 export default function PlayPage() {
     const [error, setError] = useState("");
-    const [characterData, setCharacterData] = useState(null);
-    const [turn, setTurn] = useState(null);
-
-    let { id } = useParams();
-
-    useEffect(() => {
-        fetch("/api/characters/" + id, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resp) => {
-                if (resp.status !== 200) {
-                    throw resp.statusText;
-                }
-                return resp.json();
-            })
-            .then((data) => {
-                console.log(data);
-                setCharacterData(data);
-            })
-            .catch((error) => {
-                setError(error);
-            });
-    }, [id]);
 
     function handleLogout() {
         fetch("/api/logout", {
@@ -55,7 +29,7 @@ export default function PlayPage() {
                 setError(error);
             });
     }
-    console.log(characterData);
+
     return (
         <Container>
             <Row>
@@ -78,7 +52,7 @@ export default function PlayPage() {
             <br />
             <br />
 
-            {characterData && <Playscreen propsCharacterData={characterData} />}
+            <Playscreen />
 
         </Container>
     );
