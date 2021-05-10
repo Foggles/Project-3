@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import { DiceRoll } from 'rpg-dice-roller';
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -8,18 +7,6 @@ import Table from "react-bootstrap/Table";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 export default function Enemy(props) {
-
-    function chooseAbility() {
-        let potentialAbilities = props.propsEnemyAbilities;
-        let randomAbility = potentialAbilities[Math.floor(potentialAbilities.length * Math.random())];
-        console.log(randomAbility);
-        let damageRoll = new DiceRoll(randomAbility.effect);
-        console.log(damageRoll.total);
-    }
-
-    if (props.propsTurn == 2) {
-        chooseAbility();
-    }
 
     return (
         <Container>
@@ -39,6 +26,7 @@ export default function Enemy(props) {
                 <Col>
                     <h3>{props.propsCurrentEnemy.name}</h3>
                     <h6>{props.propsCurrentEnemy.type}</h6>
+                    <h5>{props.enemyMessage}</h5>
                 </Col>
                 <Col></Col>
             </Row>

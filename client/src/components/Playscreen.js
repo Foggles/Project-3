@@ -52,37 +52,15 @@ export default function Playscreen() {
             return resp.json();
         });
 
-        const fetchEnemyAbilities = fetch("/api/enemy-abilities/" + id, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }).then((resp) => {
-            if (resp.status !== 200) {
-                throw resp.statusText;
-            }
-            return resp.json();
-        });
-
-        const fetchClassAbilities = fetch("/api/class-abilities/" + id, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }).then((resp) => {
-            if (resp.status !== 200) {
-                throw resp.statusText;
-            }
-            return resp.json();
-        });
-
-        Promise.all([fetchEnemy, fetchPlayer, fetchEnemyAbilities, fetchClassAbilities])
-            .then(([dataEnemy, dataPlayer, dataEnemyAbilities, dataClassAbilities]) => {
+        Promise.all([fetchEnemy, fetchPlayer])
+            .then(([dataEnemy, dataPlayer]) => {
+                debugger;
                 const enemy = dataEnemy[0];
                 setCurrentEnemy(enemy);
                 setEnemyHealth(enemy.health);
                 setCharacterData(dataPlayer);
-                setEnemyAbilities(dataEnemyAbilities);
-                console.log(dataClassAbilities);
-                setClassAbilities(dataClassAbilities);
+                setEnemyAbilities(enemy.Abilities);
+                setClassAbilities(dataPlayer.Class.Abilities);
                 setPlayerHealth(dataPlayer.health);
                 setPlayerMana(dataPlayer.mana);
             })
@@ -103,6 +81,8 @@ export default function Playscreen() {
             setEnemyMessage("Preparing to Attack!");
 
             setTimeout(function () {
+                setEnemyMessage("Preparing to Attack!");
+
                 let potentialAbilities = enemyAbilities;
                 let randomAbility = potentialAbilities[Math.floor(potentialAbilities.length * Math.random())];
                 console.log(randomAbility);
@@ -111,10 +91,21 @@ export default function Playscreen() {
 
                 setPlayerHealth(playerHealth - damageRoll.total);
                 setTurn(1);
-            }, 1000);
+            }, 2000);
 
         }
-    }, [turn])
+    }, [turn]);
+
+    useEffect(() => {
+        if (playerHealth === 0 && enemyHealth != 0) {
+            setEnemyMessage("You Lose.");
+            setTurn(null);
+        } else if (playerHealth != 0 && enemyHealth === 0) {
+            setEnemyMessage("You Win!");
+            setTurn(null);
+        }
+
+    }, [playerHealth && enemyHealth]);
 
     const triggerPlayerAction = (abilityEffect) => () => {
         console.log("Which does " + abilityEffect);
@@ -157,7 +148,7 @@ export default function Playscreen() {
                     <Row>
                         <Enemy propsCurrentEnemy={currentEnemy} propsEnemyAbilities={enemyAbilities}
                             propsEnemyHealth={enemyHealth}
-                            propsTurn={turn} propsDamage={damage} message={enemyMessage} />
+                            propsTurn={turn} propsDamage={damage} enemyMessage={enemyMessage} />
                     </Row>
                     {!turn && <Row>
                         <Button variant="outline-success" style={{

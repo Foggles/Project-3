@@ -96,7 +96,13 @@ module.exports = function (app) {
   app.get("/api/characters/:id", (req, res) => {
     db.Character.findOne({
       where: { id: req.params.id },
-      include: db.Class
+      // include: db.Class
+      include: [
+        {
+          model: db.Class,
+          include: [db.Ability]
+        }
+      ]
     })
       // db.Character.findOne({ where: { id: req.params.id } })
       // db.Character.findByPk(req.params.id)
@@ -106,7 +112,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/enemies", (req, res) => {
-    db.Enemy.findAll().then((data) => {
+    db.Enemy.findAll({ include: db.Ability }).then((data) => {
       res.json(data);
     });
   });
