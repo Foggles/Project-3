@@ -9,7 +9,9 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "seed": "sequelize db:seed:all "
+    "seed": "sequelize db:seed:all ",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "Jack Fogarty",
@@ -23,6 +25,7 @@
     "express-session": "^1.16.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "if-env": "^1.0.4",
     "sequelize": "^5.22.4"
   },
   "devDependencies": {
@@ -30,7 +33,6 @@
     "chai-http": "^4.0.0",
     "concurrently": "^6.0.2",
     "cross-env": "^5.2.0",
-    "if-env": "^1.0.4",
     "mocha": "^5.2.0",
     "mysql2": "^1.7.0",
     "nodemon": "^2.0.7"
