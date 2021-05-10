@@ -104,8 +104,6 @@ module.exports = function (app) {
         }
       ]
     })
-      // db.Character.findOne({ where: { id: req.params.id } })
-      // db.Character.findByPk(req.params.id)
       .then((data) => {
         res.json(data);
       });
@@ -117,21 +115,21 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/enemy-abilities/:id", (req, res) => {
-    db.Ability.findAll({
-      where: { EnemyId: req.params.id },
-    })
-      .then((data) => {
-        res.json(data)
-      })
-  });
+  // app.get("/api/enemy-abilities/:id", (req, res) => {
+  //   db.Ability.findAll({
+  //     where: { EnemyId: req.params.id },
+  //   })
+  //     .then((data) => {
+  //       res.json(data)
+  //     })
+  // });
 
-  app.get("/api/class-abilities/:id", (req, res) => {
-    db.Ability.findAll({
-      where: { ClassId: req.params.id },
-    })
-      .then((data) => {
-        res.json(data)
-      })
-  });
+  // app.get("/api/class-abilities/:id", (req, res) => {
+  //   db.Ability.findAll({
+  //     where: { ClassId: req.params.id },
+  //   })
+  //     .then((data) => {
+  //       res.json(data)
+  //     })
+  // });
 };
