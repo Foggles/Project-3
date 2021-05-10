@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { DiceRoller } from 'rpg-dice-roller';
+import { DiceRoll } from 'rpg-dice-roller';
+
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -25,6 +27,7 @@ export default function Playscreen() {
     const [playerHealth, setPlayerHealth] = useState(null);
     const [playerMana, setPlayerMana] = useState(null);
     const [enemyHealth, setEnemyHealth] = useState(null);
+    const [enemyMessage, setEnemyMessage] = useState("");
 
     useEffect(() => {
         const fetchEnemy = fetch("/api/enemies", {
@@ -78,6 +81,7 @@ export default function Playscreen() {
                 setEnemyHealth(enemy.health);
                 setCharacterData(dataPlayer);
                 setEnemyAbilities(dataEnemyAbilities);
+                console.log(dataClassAbilities);
                 setClassAbilities(dataClassAbilities);
                 setPlayerHealth(dataPlayer.health);
                 setPlayerMana(dataPlayer.mana);
@@ -87,12 +91,48 @@ export default function Playscreen() {
             });
     }, [id]);
 
+    useEffect(() => {
+        if (turn == null) {
+            return;
+        } else if (turn == 1) {
+            setEnemyMessage("");
+
+            triggerPlayerAction();
+
+        } else if (turn == 2) {
+            setEnemyMessage("Preparing to Attack!");
+
+            setTimeout(function () {
+                let potentialAbilities = enemyAbilities;
+                let randomAbility = potentialAbilities[Math.floor(potentialAbilities.length * Math.random())];
+                console.log(randomAbility);
+                let damageRoll = new DiceRoll(randomAbility.effect);
+                console.log(damageRoll.total);
+
+                setPlayerHealth(playerHealth - damageRoll.total);
+                setTurn(1);
+            }, 1000);
+
+        }
+    }, [turn])
+
+    const triggerPlayerAction = (abilityEffect) => () => {
+        console.log("Which does " + abilityEffect);
+
+        let damageRoll = new DiceRoll(abilityEffect);
+        console.log(damageRoll.total);
+
+        setEnemyHealth(enemyHealth - damageRoll.total);
+
+        setTurn(2);
+    }
+
     function randomStartTurn() {
         const randomTurn = Math.floor(Math.random() * 2) + 1;
         console.log(randomTurn);
 
         setTurn(randomTurn);
-    };
+    }
 
     function turnName(data) {
         if (data == 1) {
@@ -117,7 +157,7 @@ export default function Playscreen() {
                     <Row>
                         <Enemy propsCurrentEnemy={currentEnemy} propsEnemyAbilities={enemyAbilities}
                             propsEnemyHealth={enemyHealth}
-                            propsTurn={turn} propsDamage={damage} />
+                            propsTurn={turn} propsDamage={damage} message={enemyMessage} />
                     </Row>
                     {!turn && <Row>
                         <Button variant="outline-success" style={{
@@ -137,7 +177,7 @@ export default function Playscreen() {
             <Container>
                 <Playbar propsCharacterData={characterData} propsClassAbilities={classAbilities}
                     propsPlayerHealth={playerHealth} propsPlayerMana={playerMana}
-                    propsTurn={turn} propsDamage={damage} />
+                    propsTurn={turn} propsDamage={damage} triggerPlayerAction={triggerPlayerAction} />
             </Container>
         </>
     )

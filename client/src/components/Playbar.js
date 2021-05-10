@@ -20,18 +20,15 @@ export default function Playbar(props) {
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
-    function testClick(abilityName, abilityEffect) {
-        console.log("You clicked the " + abilityName + " button.");
-        console.log("Which does " + abilityEffect);
-    };
+    }
 
     if (props.propsClassAbilities == null) {
         return (
             <div> Loading... </div>
         )
     };
+
+    const disabled = !props.propsTurn || props.propsTurn === 2;
 
     return (
         <Container>
@@ -45,13 +42,13 @@ export default function Playbar(props) {
                 <tbody>
                     <tr>
                         <td>
-                            <Button onClick={(event) => testClick(props.propsClassAbilities[0].name, props.propsClassAbilities[0].effect)} block variant="outline-light">
+                            <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[0].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[0].name}</h5>
                                 <p>{props.propsClassAbilities[0].effect}</p>
                             </Button>
                         </td>
                         <td>
-                            <Button onClick={(event) => testClick(props.propsClassAbilities[1].name, props.propsClassAbilities[1].effect)} block variant="outline-light">
+                            <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[1].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[1].name}</h5>
                                 <p>{props.propsClassAbilities[1].effect}</p>
                             </Button>
@@ -59,13 +56,13 @@ export default function Playbar(props) {
                     </tr>
                     <tr>
                         <td>
-                            <Button onClick={(event) => testClick(props.propsClassAbilities[2].name, props.propsClassAbilities[2].effect)} block variant="outline-light">
+                            <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[2].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[2].name}</h5>
                                 <p>{props.propsClassAbilities[2].effect}</p>
                             </Button>
                         </td>
                         <td>
-                            <Button onClick={(event) => testClick(props.propsClassAbilities[3].name, props.propsClassAbilities[3].effect)} block variant="outline-light">
+                            <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[3].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[3].name}</h5>
                                 <p>{props.propsClassAbilities[3].effect}</p>
                             </Button>
