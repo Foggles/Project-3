@@ -14,6 +14,7 @@ import Playscreen from "../components/Playscreen";
 export default function PlayPage() {
     const [error, setError] = useState("");
     const [characterData, setCharacterData] = useState(null);
+    const [turn, setTurn] = useState(null);
 
     let { id } = useParams();
 
@@ -36,7 +37,7 @@ export default function PlayPage() {
             .catch((error) => {
                 setError(error);
             });
-    }, [id])
+    }, [id]);
 
     function handleLogout() {
         fetch("/api/logout", {

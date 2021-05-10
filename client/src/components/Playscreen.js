@@ -1,26 +1,25 @@
 import React, { useRef, useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Image from "react-bootstrap/Image";
 
 import Playbar from "./Playbar";
+import Enemy from "./Enemy";
 
 export default function Playscreen(props) {
     console.log(props.propsCharacterData);
     return (
-        <Container>
-            <Card style={{ height: '40rem' }}>
-                <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                    <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
-                    </Card.Text>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
+        <>
+            <Jumbotron>
+                <Container>
+                    <Row><Enemy /></Row>
+                </Container>
+            </Jumbotron>
+            <Container>
                 <Playbar propsCharacterData={props.propsCharacterData} />
-            </Card>
-        </Container>
+            </Container>
+        </>
     )
 }

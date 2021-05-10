@@ -91,7 +91,7 @@ module.exports = function (app) {
       .then((result) => {
         res.json(result);
       })
-  })
+  });
 
   app.get("/api/characters/:id", (req, res) => {
     db.Character.findOne({
@@ -103,6 +103,29 @@ module.exports = function (app) {
       .then((data) => {
         res.json(data);
       });
-  })
+  });
 
+  app.get("/api/enemies", (req, res) => {
+    db.Enemy.findAll().then((data) => {
+      res.json(data);
+    });
+  });
+
+  app.get("/api/enemy-abilities/:id", (req, res) => {
+    db.Ability.findAll({
+      where: { EnemyId: req.params.id },
+    })
+      .then((data) => {
+        res.json(data)
+      })
+  });
+
+  app.get("/api/class-abilities/:id", (req, res) => {
+    db.Ability.findAll({
+      where: { ClassId: req.params.id },
+    })
+      .then((data) => {
+        res.json(data)
+      })
+  });
 };
