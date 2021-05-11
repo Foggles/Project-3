@@ -42,7 +42,7 @@ export default function SignupPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/characters";
+        window.location = "/";
       })
       .catch((error) => {
         setError(error);

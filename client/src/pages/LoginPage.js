@@ -41,7 +41,7 @@ export default function LoginPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/characters";
+        window.location = "/";
       })
       .catch((error) => {
         setError(error);

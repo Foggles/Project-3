@@ -8,7 +8,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDoubleRight, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDoubleRight, faTrashAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 import CreateCharacterModal from "../components/Modal";
 
@@ -72,7 +72,7 @@ export default function CharacterTable() {
                     <Table striped bordered hover variant="dark">
                         <thead>
                             <tr>
-                                <th><Button block onClick={() => setModalShow(true)}>Create New Character</Button></th>
+                                <th><Button block onClick={() => setModalShow(true)}><FontAwesomeIcon icon={faUserPlus} color={"white"} size={"2x"} /></Button></th>
                             </tr>
                             <tr>
                                 <th>Character Name</th>
