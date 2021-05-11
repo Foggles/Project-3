@@ -9,6 +9,11 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
 export default function LoginPage() {
   const [error, setError] = useState("");
   const emailRef = useRef();
@@ -52,15 +57,16 @@ export default function LoginPage() {
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
               <Nav.Item>
-                <Nav.Link href="/signup">Signup</Nav.Link>
+                <Nav.Link href="/signup"><FontAwesomeIcon icon={faUserPlus} color={"white"} size={"2x"} /></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/login">Login</Nav.Link>
+                <Nav.Link href="#"><FontAwesomeIcon icon={faSignInAlt} color={"white"} size={"2x"} /></Nav.Link>
               </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       </Row>
+      <br />
       <br />
       <br />
       <Row>
@@ -103,6 +109,6 @@ export default function LoginPage() {
           <Link to="/signup">Signup</Link>
         </Col>
       </Row>
-    </Container>
+    </Container >
   );
 }

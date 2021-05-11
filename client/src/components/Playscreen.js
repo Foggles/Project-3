@@ -96,16 +96,7 @@ export default function Playscreen() {
         }
     }, [turn]);
 
-    useEffect(() => {
-        if (playerHealth === 0 && enemyHealth != 0) {
-            setEnemyMessage("You Lose.");
-            setTurn(null);
-        } else if (playerHealth != 0 && enemyHealth === 0) {
-            setEnemyMessage("You Win!");
-            setTurn(null);
-        }
 
-    }, [playerHealth && enemyHealth]);
 
     const triggerPlayerAction = (abilityEffect) => () => {
         console.log("Which does " + abilityEffect);

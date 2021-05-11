@@ -7,6 +7,7 @@ import Nav from "react-bootstrap/Nav";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Playscreen from "../components/Playscreen";
 
@@ -39,7 +40,7 @@ export default function PlayPage() {
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>
                             <Nav.Item>
-                                <Nav.Link href="/characters">Back to Characters</Nav.Link>
+                                <Nav.Link href="/characters"><FontAwesomeIcon icon={faUserAlt} color={"white"} size={"2x"} /></Nav.Link>
                             </Nav.Item>
                             <Nav.Item>
                                 <Nav.Link onClick={handleLogout}><FontAwesomeIcon icon={faSignOutAlt} color={"white"} size={"2x"} /></Nav.Link>
