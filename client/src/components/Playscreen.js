@@ -92,10 +92,28 @@ export default function Playscreen() {
                 setPlayerHealth(playerHealth - damageRoll.total);
                 setTurn(1);
             }, 2000);
-
+        } else if (turn == 0) {
+            return;
         }
     }, [turn]);
 
+    useEffect(() => {
+        if (playerHealth == 0) {
+            setEnemyMessage("You Lose.");
+            setTurn(0);
+        } else if (playerHealth != 0) {
+            return;
+        }
+    }, [playerHealth]);
+
+    useEffect(() => {
+        if (enemyHealth == 0) {
+            setEnemyMessage("You Win!");
+            setTurn(0);
+        } else if (enemyHealth != 0) {
+            return;
+        }
+    }, [enemyHealth]);
 
 
     const triggerPlayerAction = (abilityEffect) => () => {
