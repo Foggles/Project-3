@@ -6,8 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Playscreen from "../components/Playscreen";
 

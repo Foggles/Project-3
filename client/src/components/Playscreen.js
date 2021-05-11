@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { DiceRoller } from 'rpg-dice-roller';
 import { DiceRoll } from 'rpg-dice-roller';
 
 
@@ -18,7 +17,6 @@ export default function Playscreen() {
 
     const [error, setError] = useState("");
     const [turn, setTurn] = useState(null);
-    const [damage, setDamage] = useState(null);
 
     const [characterData, setCharacterData] = useState(null);
     const [currentEnemy, setCurrentEnemy] = useState(null);
@@ -54,8 +52,7 @@ export default function Playscreen() {
 
         Promise.all([fetchEnemy, fetchPlayer])
             .then(([dataEnemy, dataPlayer]) => {
-                debugger;
-                const enemy = dataEnemy[0];
+                let enemy = dataEnemy[Math.floor(dataEnemy.length * Math.random())];;
                 setCurrentEnemy(enemy);
                 setEnemyHealth(enemy.health);
                 setCharacterData(dataPlayer);
@@ -157,7 +154,7 @@ export default function Playscreen() {
                     <Row>
                         <Enemy propsCurrentEnemy={currentEnemy} propsEnemyAbilities={enemyAbilities}
                             propsEnemyHealth={enemyHealth}
-                            propsTurn={turn} propsDamage={damage} enemyMessage={enemyMessage} />
+                            propsTurn={turn} enemyMessage={enemyMessage} />
                     </Row>
                     {!turn && <Row>
                         <Button variant="outline-success" style={{
@@ -177,7 +174,7 @@ export default function Playscreen() {
             <Container>
                 <Playbar propsCharacterData={characterData} propsClassAbilities={classAbilities}
                     propsPlayerHealth={playerHealth} propsPlayerMana={playerMana}
-                    propsTurn={turn} propsDamage={damage} triggerPlayerAction={triggerPlayerAction} />
+                    propsTurn={turn} triggerPlayerAction={triggerPlayerAction} />
             </Container>
         </>
     )

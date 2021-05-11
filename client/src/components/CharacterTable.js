@@ -13,6 +13,9 @@ import { faAngleDoubleRight, faTrashAlt } from '@fortawesome/free-solid-svg-icon
 import CreateCharacterModal from "../components/Modal";
 
 export default function CharacterTable() {
+
+    let { id } = useParams();
+
     const [error, setError] = useState("");
     const [tableData, setTableData] = useState([]);
     const [modalShow, setModalShow] = React.useState(false);
@@ -42,6 +45,26 @@ export default function CharacterTable() {
         setModalShow(false);
     }
 
+    function handleDelete(id) {
+        fetch("/api/character/" + id, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((resp) => {
+                return resp.json();
+            })
+            .then((data) => {
+                console.log(data);
+                debugger;
+                setTableData(data);
+            })
+            .catch((error) => {
+                setError(error);
+            })
+    }
+
     return (
         <>
             <Row>
@@ -66,9 +89,6 @@ export default function CharacterTable() {
                                 const character = FCG.Names.generate({ seed: data.seed });
                                 const characterRace = character.race;
 
-                                console.log(data);
-                                console.log(character);
-
                                 function capitalizeFirstLetter(string) {
                                     return string.charAt(0).toUpperCase() + string.slice(1);
                                 };
@@ -80,7 +100,7 @@ export default function CharacterTable() {
                                     <td>{capitalizeFirstLetter(characterRace)}</td>
                                     <td>{data.faction}</td>
                                     <td><Button block><Link to={"/play/" + data.id}><FontAwesomeIcon icon={faAngleDoubleRight} color={"white"} /></Link></Button>
-                                        <Button block><FontAwesomeIcon icon={faTrashAlt} color={"red"} /></Button></td>
+                                        <Button block onClick={() => handleDelete(data.id)}><FontAwesomeIcon icon={faTrashAlt} color={"red"} /></Button></td>
                                 </tr>;
                             })}
                         </tbody>

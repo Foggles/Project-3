@@ -9,10 +9,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Card from "react-bootstrap/Card";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faUserAlt, faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 export default function LoginPage() {
   const [error, setError] = useState("");

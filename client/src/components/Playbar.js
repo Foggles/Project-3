@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 import * as FCG from "fantasy-content-generator";
 
 import Container from "react-bootstrap/Container";

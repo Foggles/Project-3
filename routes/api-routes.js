@@ -115,21 +115,17 @@ module.exports = function (app) {
     });
   });
 
-  // app.get("/api/enemy-abilities/:id", (req, res) => {
-  //   db.Ability.findAll({
-  //     where: { EnemyId: req.params.id },
-  //   })
-  //     .then((data) => {
-  //       res.json(data)
-  //     })
-  // });
-
-  // app.get("/api/class-abilities/:id", (req, res) => {
-  //   db.Ability.findAll({
-  //     where: { ClassId: req.params.id },
-  //   })
-  //     .then((data) => {
-  //       res.json(data)
-  //     })
-  // });
+  app.delete("/api/character/:id", (req, res) => {
+    db.Character.destroy({
+      where: { id: req.params.id },
+    })
+      .then(() => {
+        return db.Character.findAll({
+          include: db.Class,
+          where: { userId: req.user.id }
+        })
+      }).then((result) => {
+        res.json(result);
+      });
+  });
 };
