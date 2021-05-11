@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -69,46 +70,56 @@ export default function LoginPage() {
       <br />
       <br />
       <br />
-      <Row>
-        <Col>
-          <h1>Login</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                ref={emailRef}
-                type="email"
-                placeholder="Enter email"
-              />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
+      <br />
+      <Card bg="dark" text="white" style={{
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: '18rem'
+      }}>
+        <Card.Body>
+          <Row>
+            <Col>
+              <h1>Login</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Form>
+                <Form.Group controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    ref={emailRef}
+                    type="email"
+                    placeholder="Enter email"
+                  />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
               </Form.Text>
-            </Form.Group>
+                </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                ref={passwordRef}
-                type="password"
-                placeholder="Password"
-              />
-              {error && <Form.Text className="text-muted">{error}</Form.Text>}
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-              Submit
+                <Form.Group controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    ref={passwordRef}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  {error && <Form.Text className="text-muted">{error}</Form.Text>}
+                </Form.Group>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Submit
             </Button>
-          </Form>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Link to="/signup">Signup</Link>
-        </Col>
-      </Row>
+              </Form>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Link to="/signup">Signup</Link>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
+
     </Container >
   );
 }
