@@ -28,7 +28,7 @@ export default function Playbar(props) {
         )
     };
 
-    const disabled = !props.propsTurn || props.propsTurn === 2;
+    const disabled = !props.propsTurn || props.propsTurn === 2 || props.propsTurn === 3;
 
     return (
         <Container>

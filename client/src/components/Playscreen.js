@@ -17,6 +17,7 @@ export default function Playscreen() {
 
     const [error, setError] = useState("");
     const [turn, setTurn] = useState(null);
+    const [gameOver, setGameOver] = useState(false);
 
     const [characterData, setCharacterData] = useState(null);
     const [currentEnemy, setCurrentEnemy] = useState(null);
@@ -25,7 +26,7 @@ export default function Playscreen() {
     const [playerHealth, setPlayerHealth] = useState(null);
     const [playerMana, setPlayerMana] = useState(null);
     const [enemyHealth, setEnemyHealth] = useState(null);
-    const [enemyMessage, setEnemyMessage] = useState("");
+    const [message, setMessage] = useState("");
 
     useEffect(() => {
         const fetchEnemy = fetch("/api/enemies", {
@@ -60,6 +61,7 @@ export default function Playscreen() {
                 setClassAbilities(dataPlayer.Class.Abilities);
                 setPlayerHealth(dataPlayer.health);
                 setPlayerMana(dataPlayer.mana);
+                setMessage("Prepare to Fight.");
             })
             .catch((error) => {
                 setError(error);
@@ -70,48 +72,39 @@ export default function Playscreen() {
         if (turn == null) {
             return;
         } else if (turn == 1) {
-            setEnemyMessage("");
-
-            triggerPlayerAction();
+            if (playerHealth > 0) {
+                setMessage("Choose an Ability!");
+                triggerPlayerAction();
+            } else if (playerHealth <= 0) {
+                setMessage("You Lose.");
+                setTurn(3);
+                setGameOver(true);
+            }
 
         } else if (turn == 2) {
-            setEnemyMessage("Preparing to Attack!");
+            if (enemyHealth > 0) {
+                setMessage("Preparing to Attack!");
 
-            setTimeout(function () {
-                setEnemyMessage("Preparing to Attack!");
+                setTimeout(function () {
+                    setMessage("Preparing to Attack!");
 
-                let potentialAbilities = enemyAbilities;
-                let randomAbility = potentialAbilities[Math.floor(potentialAbilities.length * Math.random())];
-                console.log(randomAbility);
-                let damageRoll = new DiceRoll(randomAbility.effect);
-                console.log(damageRoll.total);
+                    let potentialAbilities = enemyAbilities;
+                    let randomAbility = potentialAbilities[Math.floor(potentialAbilities.length * Math.random())];
+                    console.log(randomAbility);
+                    let damageRoll = new DiceRoll(randomAbility.effect);
+                    console.log(damageRoll.total);
 
-                setPlayerHealth(playerHealth - damageRoll.total);
-                setTurn(1);
-            }, 2000);
-        } else if (turn == 0) {
-            return;
+                    setPlayerHealth(playerHealth - damageRoll.total);
+                    setTurn(1);
+
+                }, 2000);
+            } else if (enemyHealth <= 0) {
+                setMessage("You Win!");
+                setTurn(3);
+                setGameOver(true);
+            }
         }
     }, [turn]);
-
-    useEffect(() => {
-        if (playerHealth == 0) {
-            setEnemyMessage("You Lose.");
-            setTurn(0);
-        } else if (playerHealth != 0) {
-            return;
-        }
-    }, [playerHealth]);
-
-    useEffect(() => {
-        if (enemyHealth == 0) {
-            setEnemyMessage("You Win!");
-            setTurn(0);
-        } else if (enemyHealth != 0) {
-            return;
-        }
-    }, [enemyHealth]);
-
 
     const triggerPlayerAction = (abilityEffect) => () => {
         console.log("Which does " + abilityEffect);
@@ -122,6 +115,7 @@ export default function Playscreen() {
         setEnemyHealth(enemyHealth - damageRoll.total);
 
         setTurn(2);
+
     }
 
     function randomStartTurn() {
@@ -136,6 +130,8 @@ export default function Playscreen() {
             return ("Player Turn");
         } else if (data == 2) {
             return ("Enemy Turn");
+        } else if (data == 3) {
+            return ("Game Over. Please return to Characters page.");
         }
     }
 
@@ -154,9 +150,9 @@ export default function Playscreen() {
                     <Row>
                         <Enemy propsCurrentEnemy={currentEnemy} propsEnemyAbilities={enemyAbilities}
                             propsEnemyHealth={enemyHealth}
-                            propsTurn={turn} enemyMessage={enemyMessage} />
+                            propsTurn={turn} message={message} />
                     </Row>
-                    {!turn && <Row>
+                    {!turn && gameOver === false && <Row>
                         <Button variant="outline-success" style={{
                             marginLeft: "auto",
                             marginRight: "auto",
