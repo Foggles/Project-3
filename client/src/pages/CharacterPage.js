@@ -37,7 +37,7 @@ export default function CharacterPage() {
         <Container>
             <Row>
                 <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
-                    <Navbar.Brand href="/"><h4>Varanus</h4></Navbar.Brand>
+                    <Navbar.Brand href="/"><img src="https://res.cloudinary.com/denkxexyj/image/upload/v1620800654/Icon2_rsjawl.png"></img></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>
@@ -54,7 +54,7 @@ export default function CharacterPage() {
             <Row>
                 <Col></Col>
                 <Col>
-                    <h1>Characters Page</h1>
+                    <h1>List of Champions</h1>
                 </Col>
                 <Col></Col>
             </Row>

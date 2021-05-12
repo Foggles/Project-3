@@ -44,13 +44,13 @@ export default function Playbar(props) {
                         <td>
                             <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[0].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[0].name}</h5>
-                                <p>{props.propsClassAbilities[0].effect}</p>
+                                <p>{props.propsClassAbilities[0].damageRange}</p>
                             </Button>
                         </td>
                         <td>
                             <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[1].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[1].name}</h5>
-                                <p>{props.propsClassAbilities[1].effect}</p>
+                                <p>{props.propsClassAbilities[1].damageRange}</p>
                             </Button>
                         </td>
                     </tr>
@@ -58,13 +58,13 @@ export default function Playbar(props) {
                         <td>
                             <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[2].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[2].name}</h5>
-                                <p>{props.propsClassAbilities[2].effect}</p>
+                                <p>{props.propsClassAbilities[2].damageRange}</p>
                             </Button>
                         </td>
                         <td>
                             <Button disabled={disabled} onClick={props.triggerPlayerAction(props.propsClassAbilities[3].effect)} block variant="outline-light">
                                 <h5>{props.propsClassAbilities[3].name}</h5>
-                                <p>{props.propsClassAbilities[3].effect}</p>
+                                <p>{props.propsClassAbilities[3].damageRange}</p>
                             </Button>
                         </td>
                     </tr>

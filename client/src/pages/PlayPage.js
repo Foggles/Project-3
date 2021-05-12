@@ -34,7 +34,7 @@ export default function PlayPage() {
         <Container>
             <Row>
                 <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
-                    <Navbar.Brand href="/">Varanus</Navbar.Brand>
+                    <Navbar.Brand href="/"><img src="https://res.cloudinary.com/denkxexyj/image/upload/v1620800654/Icon2_rsjawl.png"></img></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
                         <Nav>

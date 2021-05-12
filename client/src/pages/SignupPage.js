@@ -42,7 +42,7 @@ export default function SignupPage() {
         return resp.json();
       })
       .then(() => {
-        window.location = "/";
+        window.location = "/characters";
       })
       .catch((error) => {
         setError(error);
@@ -53,7 +53,7 @@ export default function SignupPage() {
     <Container>
       <Row>
         <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
-          <Navbar.Brand href="/">Varanus</Navbar.Brand>
+          <Navbar.Brand href="/"><img src="https://res.cloudinary.com/denkxexyj/image/upload/v1620800654/Icon2_rsjawl.png"></img></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
@@ -79,7 +79,7 @@ export default function SignupPage() {
         <Card.Body>
           <Row>
             <Col>
-              <h1>Signup</h1>
+              <h1 className="text-center">Signup</h1>
             </Col>
           </Row>
           <Row>
@@ -101,6 +101,9 @@ export default function SignupPage() {
                     type="email"
                     placeholder="Enter email"
                   />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -120,7 +123,7 @@ export default function SignupPage() {
           </Row>
           <Row>
             <Col>
-              <Link to="/login">Login</Link>
+              <Link to="/login">Already have an account? Login</Link>
             </Col>
           </Row>
         </Card.Body>

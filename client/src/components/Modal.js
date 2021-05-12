@@ -13,11 +13,24 @@ export default function MyVerticallyCenteredModal(props) {
 
     function handleCreateChar() {
         // ! There's an error in the API. The character after being regenerated is different.
+        function lowerFirstLetter(string) {
+            return string.charAt(0).toLowerCase() + string.slice(1);
+        }
+
         console.log("Selected Race = " + charRaceRef.current.value);
-        const generatedCharacter = FCG.Names.generate({ race: charRaceRef.current.value });
+        const generatedCharacter = FCG.Names.generate({ race: lowerFirstLetter(charRaceRef.current.value), gender: lowerFirstLetter(charGenderRef.current.value) });
         console.log(generatedCharacter);
         const testChar = FCG.Names.generate({ seed: generatedCharacter.seed });
         console.log(testChar);
+
+        function convertClass(value) {
+            if (value === "Warrior") {
+                return (1);
+            } else if (value === "Wizard") {
+                return (2);
+            }
+        }
+
 
         fetch("/api/user_data", {
             method: "GET"
@@ -36,7 +49,7 @@ export default function MyVerticallyCenteredModal(props) {
                     level: 1,
                     health: 100,
                     mana: 100,
-                    ClassId: charClassRef.current.value,
+                    ClassId: convertClass(charClassRef.current.value),
                     UserId: userId
                 };
 
@@ -82,30 +95,30 @@ export default function MyVerticallyCenteredModal(props) {
                     <Form.Group controlId="formCharacterRace">
                         <Form.Label>Character Race</Form.Label>
                         <Form.Control as="select" custom ref={charRaceRef}>
-                            <option>dragonborn</option>
-                            <option>dwarf</option>
-                            <option>elf</option>
-                            <option>gnome</option>
-                            <option>human</option>
-                            <option>halfOrc</option>
-                            <option>halfElf</option>
-                            <option>tiefling</option>
+                            <option>Dragonborn</option>
+                            <option>Dwarf</option>
+                            <option>Elf</option>
+                            <option>Gnome</option>
+                            <option>Human</option>
+                            <option>HalfOrc</option>
+                            <option>HalfElf</option>
+                            <option>Tiefling</option>
                         </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="formCharacterGender">
                         <Form.Label>Character Gender</Form.Label>
                         <Form.Control as="select" custom ref={charGenderRef}>
-                            <option>male</option>
-                            <option>female</option>
+                            <option>Male</option>
+                            <option>Female</option>
                         </Form.Control>
                     </Form.Group>
 
                     <Form.Group controlId="formCharacterClass">
                         <Form.Label>Character Class</Form.Label>
                         <Form.Control as="select" custom ref={charClassRef}>
-                            <option>1</option>
-                            <option>2</option>
+                            <option>Warrior</option>
+                            <option>Wizard</option>
                         </Form.Control>
                     </Form.Group>
 

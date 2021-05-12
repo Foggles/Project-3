@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -57,7 +56,7 @@ export default function LoginPage() {
     <Container>
       <Row>
         <Navbar bg="dark" expand="lg" fixed="top" variant="dark">
-          <Navbar.Brand href="/">Varanus</Navbar.Brand>
+          <Navbar.Brand href="/"><img src="https://res.cloudinary.com/denkxexyj/image/upload/v1620800654/Icon2_rsjawl.png"></img></Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
             <Nav>
@@ -82,7 +81,7 @@ export default function LoginPage() {
       <br />
       <Jumbotron fluid>
         <Container className="text-center">
-          <h1>Varanus</h1>
+          <img src="https://res.cloudinary.com/denkxexyj/image/upload/v1620800654/Varanus2_wsgera.png"></img>
         </Container>
       </Jumbotron>
       <Row style={{
@@ -96,8 +95,8 @@ export default function LoginPage() {
               <Card.Subtitle className="mb-2 text-muted">Short Guide</Card.Subtitle>
               <Card.Text>
                 Currently, only the Class that the Player selects has any effect on the game.
-                <br />
-                <br />
+              </Card.Text>
+              <Card.Text>
                 For future development, the race & faction that the Player selects will have an effect on the game.
               </Card.Text>
             </Card.Body>
@@ -110,14 +109,17 @@ export default function LoginPage() {
               <Card.Subtitle className="mb-2 text-muted">Short Guide</Card.Subtitle>
               <Card.Text>
                 Combat is turn-based, meaning you and the enemy take turns selecting an ability to use.
-                <br />
-                <br />
+              </Card.Text>
+              <Card.Text>
                 The Player's abilities change depending on what Class the Player selected during character creation.
-                <br />
-                <br />
+              </Card.Text>
+              <Card.Text>
+                Each ability will have a range of potential damage beneath it.
+              </Card.Text>
+              <Card.Text>
                 Once either the Player's or Enemies health has reached zero, the game is over.
-                <br />
-                <br />
+              </Card.Text>
+              <Card.Text>
                 For future development, abilities will have a use limit. Which will force the Player to "ration" their abilities.
             </Card.Text>
             </Card.Body>
@@ -129,15 +131,15 @@ export default function LoginPage() {
               <Card.Title>Enemies</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">Short Guide</Card.Subtitle>
               <Card.Text>
-                There is currently only a single enemy, a Zombie, in the game.
-                <br />
-                <br />
-                When there are more, the game will randomly select an enemy for the player to play against.
-            </Card.Text>
+                There are currently three enemies in the game; Wolf, Zombie & Red Dragon (In order of difficulty).
+              </Card.Text>
+              <Card.Text>
+                When entering combat, the system will randomly select an enemy for you to play against.
+              </Card.Text>
             </Card.Body>
           </Card>
         </Col>
-      </Row>
-    </Container>
+      </Row >
+    </Container >
   );
 }

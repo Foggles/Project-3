@@ -13,6 +13,11 @@ module.exports = function (sequelize, DataTypes) {
         effect: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+
+        damageRange: {
+            type: DataTypes.STRING,
+            allowNull: true
         }
     });
 

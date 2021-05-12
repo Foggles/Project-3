@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -26,7 +26,7 @@ export default function Enemy(props) {
                 <Col>
                     <h3>{props.propsCurrentEnemy.name}</h3>
                     <h6>{props.propsCurrentEnemy.type}</h6>
-                    <h5>{props.enemyMessage}</h5>
+                    <h5>{props.message}</h5>
                 </Col>
                 <Col></Col>
             </Row>
