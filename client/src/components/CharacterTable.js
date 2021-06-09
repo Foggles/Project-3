@@ -56,8 +56,7 @@ export default function CharacterTable() {
                 return resp.json();
             })
             .then((data) => {
-                console.log(data);
-                debugger;
+                // console.log(data);
                 setTableData(data);
             })
             .catch((error) => {
@@ -85,7 +84,7 @@ export default function CharacterTable() {
                         </thead>
                         <tbody>
                             {tableData.map((data, index) => {
-                                console.log(data.seed);
+                                // console.log(data.seed);
                                 const character = FCG.Names.generate({ seed: data.seed });
                                 const characterRace = character.race;
 

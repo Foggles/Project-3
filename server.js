@@ -41,12 +41,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync({}).then(() => {
-  app.listen(3001, () => {
+  app.listen(PORT, () => {
 
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
-      3001,
-      3001
+      PORT,
+      PORT
     );
   });
 });

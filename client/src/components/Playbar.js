@@ -10,13 +10,13 @@ export default function Playbar(props) {
 
     function generateCharacter() {
         const generatedCharacter = FCG.Names.generate({ seed: props.propsCharacterData.seed });
-        console.log(generatedCharacter);
+        // console.log(generatedCharacter);
 
         return generatedCharacter;
     };
 
     const generatedCharacter = generateCharacter();
-    console.log(generatedCharacter);
+    // console.log(generatedCharacter);
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);

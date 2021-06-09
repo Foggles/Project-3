@@ -17,11 +17,11 @@ export default function MyVerticallyCenteredModal(props) {
             return string.charAt(0).toLowerCase() + string.slice(1);
         }
 
-        console.log("Selected Race = " + charRaceRef.current.value);
+        // console.log("Selected Race = " + charRaceRef.current.value);
         const generatedCharacter = FCG.Names.generate({ race: lowerFirstLetter(charRaceRef.current.value), gender: lowerFirstLetter(charGenderRef.current.value) });
-        console.log(generatedCharacter);
-        const testChar = FCG.Names.generate({ seed: generatedCharacter.seed });
-        console.log(testChar);
+        // console.log(generatedCharacter);
+        // const testChar = FCG.Names.generate({ seed: generatedCharacter.seed });
+        // console.log(testChar);
 
         function convertClass(value) {
             if (value === "Warrior") {
@@ -39,9 +39,9 @@ export default function MyVerticallyCenteredModal(props) {
                 return resp.json();
             })
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 let userId = data.id;
-                console.log(userId);
+                // console.log(userId);
 
                 const newCharacter = {
                     seed: generatedCharacter.seed,
@@ -53,7 +53,7 @@ export default function MyVerticallyCenteredModal(props) {
                     UserId: userId
                 };
 
-                console.log(newCharacter);
+                // console.log(newCharacter);
 
                 fetch("/api/characters", {
                     method: "POST",
@@ -69,7 +69,7 @@ export default function MyVerticallyCenteredModal(props) {
                         return resp.json();
                     })
                     .then((data) => {
-                        console.log(data);
+                        // console.log(data);
                         props.onClose(data);
                     })
                     .catch((error) => {
