@@ -55,7 +55,7 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/api/characters", (req, res) => {
+  app.get("/api/characters", (req, res) => {
     db.Character.create({
       seed: req.body.seed,
       faction: req.body.faction,
