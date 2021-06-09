@@ -11,7 +11,7 @@
     "install": "cd client && npm install",
     "seed": "sequelize db:seed:all ",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "concurrently \"npm run build\" \"npm run seed\""
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "Jack Fogarty",
