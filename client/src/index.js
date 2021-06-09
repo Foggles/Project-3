@@ -7,5 +7,5 @@ import App from "./App";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-let testChar = FCG.Names.generate({ seed: 'db76b371-2184-4500-9615-f45f54d95c7e' });
-console.log(testChar);
+// let testChar = FCG.Names.generate({ seed: 'db76b371-2184-4500-9615-f45f54d95c7e' });
+// console.log(testChar);
