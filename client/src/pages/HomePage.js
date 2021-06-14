@@ -94,10 +94,10 @@ export default function LoginPage() {
               <Card.Title>Character Creation</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">Short Guide</Card.Subtitle>
               <Card.Text>
-                Currently, only the Class that the Player selects has any effect on the game.
+                When creating a character, the user can select numerous options - however only the class has any effect on gameplay.
               </Card.Text>
               <Card.Text>
-                For future development, the race & faction that the Player selects will have an effect on the game.
+                The two classes are the Warrior & the Wizard.
               </Card.Text>
             </Card.Body>
           </Card>
@@ -114,14 +114,11 @@ export default function LoginPage() {
                 The Player's abilities change depending on what Class the Player selected during character creation.
               </Card.Text>
               <Card.Text>
-                Each ability will have a range of potential damage beneath it.
+                Each ability will display a range of potential damage beneath it.
               </Card.Text>
               <Card.Text>
                 Once either the Player's or Enemies health has reached zero, the game is over.
               </Card.Text>
-              <Card.Text>
-                For future development, abilities will have a use limit. Which will force the Player to "ration" their abilities.
-            </Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -131,10 +128,7 @@ export default function LoginPage() {
               <Card.Title>Enemies</Card.Title>
               <Card.Subtitle className="mb-2 text-muted">Short Guide</Card.Subtitle>
               <Card.Text>
-                There are currently three enemies in the game; Wolf, Zombie & Red Dragon (In order of difficulty).
-              </Card.Text>
-              <Card.Text>
-                When entering combat, the system will randomly select an enemy for you to play against.
+                There is currently only a single enemy in the game, the Ghoul.
               </Card.Text>
             </Card.Body>
           </Card>
